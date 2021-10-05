@@ -50,22 +50,22 @@
 
 
 /* JUNIOR */
-function whoseTurnIsIt () {
+function whoseTurnIsIt (whoPlayed) {
     if (whoPlayed === 'red') {
-        isRedTurn = false;
-        isBlackTurn = true;
+        return ('black')
     } 
     else if (whoPlayed === 'black') {
-        isRedTurn = true;
-        isBlackTurn = false;        
+        return ('red')    
     }    
 }
 
-/* global variables needed */
-let whoPlayed = '';
-let isRedTurn = false;
-let isBlackTurn = false;
-/* ---------- */
+
+
+
+
+
+
+
 
 
 
