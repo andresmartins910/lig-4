@@ -1,7 +1,23 @@
 /* ANDRÉ */
+#game {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-top: 100px;
+}
 
+.columns {
+    height: 250px;
+    width: 50px;
+    border: 1px solid black;
+    margin-right: 1px;
+}
 
-
+.cells {
+    height: 40px;
+    width: 50px;
+    /* border: 1px solid black; */
+}
 
 
 
