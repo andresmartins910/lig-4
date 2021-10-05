@@ -52,10 +52,10 @@
 /* JUNIOR */
 function whoseTurnIsIt (whoPlayed) {
     if (whoPlayed === 'red') {
-        return ('black')
+        return ('black');
     } 
     else if (whoPlayed === 'black') {
-        return ('red')    
+        return ('red'); 
     }    
 }
 
