@@ -60,14 +60,14 @@ function whoseTurnIsIt (whoPlayed) {
 }
 whoPlayed = 'red' ;
 
+function removeGrid() {
+    
+}
 
-
-
-
-
-
-
-
+function restart() {
+    whoPlayed = '';
+    generateTable();
+}
 
 
 
