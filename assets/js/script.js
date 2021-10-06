@@ -60,22 +60,22 @@ function whoseTurnIsIt (whoPlayed) {
 }
 whoPlayed = 'red' ;
 
-function removeGrid() {
-    
+const restartButton = document.getElementById("restartButton");
+
+function deleteTable() {
+    const deleteMainTable = document.getElementById('game');
+    deleteMainTable.remove();
 }
 
 function restart() {
     whoPlayed = '';
+    deleteTable();
     generateTable();
 }
 
-
-
-
-
-
-
-
+restartButton.onclick = function () {
+    restart();
+};
 
 
 
