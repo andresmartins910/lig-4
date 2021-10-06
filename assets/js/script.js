@@ -30,38 +30,6 @@ function generateTable() {
 
 generateTable()
 
-// const divContainerGroup = document.querySelector('#game');
-// divContainerGroup.addEventListener('click', event => {
-//     const column = event.target.parentElement.children;
-//     addCircle(column, whoPlayed);
-//     whoseTurnIsIt(whoPlayed);
-// });
-
-
-// function whoseTurnIsIt(currentPlayer) {
-//     if (currentPlayer === 'red') {
-//         whoPlayed = 'black';
-//     } else if (currentPlayer === 'black') {
-//         whoPlayed = 'red';
-//     }
-// }
-// const addCircle = (columnArray, currentPlayer) => {
-//     const disc = document.createElement('div');
-//     disc.classList.add('disc');
-//     if (currentPlayer === 'red') {
-//         disc.classList.add('red');
-//     } else if (currentPlayer === 'black') {
-//         disc.classList.add('black');
-//     }
-//     for (let i = columnArray.length - 1; i >= 0; i--) {
-//         const currentCell = columnArray[i];
-//         if (currentCell.firstChild === null) {
-//             console.log(currentCell.innerHTML);
-//             currentCell.appendChild(disc);
-//             i = -1;
-//         }
-//     }
-// };
 
 function validateVertical() {
     for (let j = 1; j <= 6; j++) {
