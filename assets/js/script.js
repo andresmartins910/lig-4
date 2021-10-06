@@ -66,7 +66,7 @@ const addCircle = (columnArray, currentPlayer) => {
 function validateVertical() {
     for (let j = 1; j <= 6; j++) {
         const cells = document.querySelector(`#column${j}`).children
-    
+
         let discArray = []
         for (let i = 0; i < cells.length; i++) {
             let discs = cells[i].firstChild
@@ -74,12 +74,12 @@ function validateVertical() {
                 discArray.push(discs.getAttribute('class'))
             }
         }
-    
+
         let blackCounter = 0
         let redCounter = 0
-    
+
         for (let i = 0; i < discArray.length; i++) {
-            if (columns[i] === 'disc black') {
+            if (discArray[i] === 'disc black') {
                 blackCounter++
                 if (discArray[i + 1] === 'disc red') {
                     redCounter = 0
@@ -102,20 +102,39 @@ function validateVertical() {
 }
 
 function validateHorizontal() {
-    let discArray = []
-    for (let i = 1; i <= 7; i++) {
-        const cells = document.querySelector(`#column${i}`).children
-
-        for (let j = 0; j < cells.length; j += 6) {
-            let discs = cells[j].firstChild
+    for (let x = 1; x <= 6; x++) {
+        let discArray = [];
+        for (let i = x; i <= x + 36; i += 6) {
+            const cells = document.querySelector(`#cell${i}`);
+            let discs = cells.firstChild;
             if (discs !== null) {
-                discArray.push(discs.getAttribute('class'))
+                discArray.push(discs.getAttribute('class'));
             }
         }
-        console.log(discArray)
+        let blackCounter = 0;
+        let redCounter = 0;
+        for (let i = 0; i < discArray.length; i++) {
+            if (discArray[i] === 'disc black') {
+                blackCounter++;
+                if (discArray[i + 1] === 'disc red') {
+                    redCounter = 0;
+                }
+            }
+            if (discArray[i] === 'disc red') {
+                redCounter++;
+                if (discArray[i + 1] === 'disc black') {
+                    blackCounter = 0;
+                }
+            }
+        }
+        if (blackCounter === 4) {
+            return true;
+        } else if (redCounter === 4) {
+            return true;
+        }
     }
+    return false;
 }
-
 
 
 
