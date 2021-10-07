@@ -13,6 +13,7 @@ function generateTable() {
   for (let i = 1; i <= 7; i++) {
     const divColumn = document.createElement('div');
     divColumn.className = 'columns';
+    divColumn.classList.add('clickable');
     divColumn.id = `column${counterColumns++}`;
     main.appendChild(divColumn);
   }
@@ -191,10 +192,27 @@ function victoryMessage(player) {
   }, 100);
 }
 
+/* FUNÇÃO QUE VERIFICA SE A COLUNA ESTÁ CHEIA */
+const columnIsFull = columnElementHTML => {
+  const columnArray = columnElementHTML.children;
+  let countNoEmptyCell = 0;
+  for (let i = 0; i < columnArray.length; i++) {
+    if (columnArray[i].innerHTML !== '') {
+      countNoEmptyCell += 1;
+    }
+  }
+  if (countNoEmptyCell === columnArray.length) {
+    columnElementHTML.classList.remove('clickable');
+  }
+};
+
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
 
-  if (col.classList.contains('columns')) {
+  /* VERIFICA SE COLUNA ESTÁ CHEIA */
+  columnIsFull(col);
+
+  if (col.classList.contains('clickable')) {
     addCircle(col, whoPlayed);
     const verticalWin = validateVertical();
     const horizontalWin = validateHorizontal();
