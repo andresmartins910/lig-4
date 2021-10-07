@@ -63,6 +63,7 @@ const addCircle = (columnArray, currentPlayer) => {
     }
 };
 
+
 function validateVertical() {
     for (let j = 1; j <= 6; j++) {
         const cells = document.querySelector(`#column${j}`).children
@@ -174,32 +175,32 @@ function validateHorizontal() {
 
 
 /* JUNIOR */
+function whoseTurnIsIt (whoPlayed) {
+    if (whoPlayed === 'red') {
+       whoPlayed = 'black' ;
+    } 
+    else if (whoPlayed === 'black') {
+        whoPlayed = 'red' ;
+    }    
+}
+whoPlayed = 'red' ;
 
+const restartButton = document.getElementById("restartButton");
 
+function deleteTable() {
+    const deleteMainTable = document.getElementById('game');
+    deleteMainTable.remove();
+}
 
+function restart() {
+    whoPlayed = '';
+    deleteTable();
+    generateTable();
+}
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+restartButton.onclick = function () {
+    restart();
+};
 
 
 
