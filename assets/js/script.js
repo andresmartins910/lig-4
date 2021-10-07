@@ -193,17 +193,19 @@ function victoryMessage(player) {
 
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
-  addCircle(col, whoPlayed);
 
-  const verticalWin = validateVertical();
-  const horizontalWin = validateHorizontal();
-  const diagonalWin = validateDiagonal(board);
+  if (col.classList.contains('columns')) {
+    addCircle(col, whoPlayed);
+    const verticalWin = validateVertical();
+    const horizontalWin = validateHorizontal();
+    const diagonalWin = validateDiagonal(board);
 
-  const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
+    const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
 
-  if (weHaveAWinner) {
-    victoryMessage(whoPlayed);
-  } else {
-    whoseTurnIsIt(whoPlayed);
+    if (weHaveAWinner) {
+      victoryMessage(whoPlayed);
+    } else {
+      whoseTurnIsIt(whoPlayed);
+    }
   }
 });
