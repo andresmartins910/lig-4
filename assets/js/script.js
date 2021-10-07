@@ -170,16 +170,20 @@ function validateDiagonal(boardContainer) {
 }
 
 function deleteTable() {
-  const deleteMainTable = document.getElementById('game');
-  deleteMainTable.remove();
-}
-
-/* Necessita ser revista */
-function restart() {
-  whoPlayed = '';
-  deleteTable();
-  generateTable();
-}
+    const dellRedCells = document.getElementsByClassName("disc red");  
+    while (dellRedCells.length > 0) {
+      dellRedCells[0].remove();
+    }
+    const dellBlackCells = document.getElementsByClassName("disc black");  
+    while (dellBlackCells.length > 0) {
+      dellBlackCells[0].remove();
+    }
+  }
+  
+  function restart() {
+    deleteTable();
+    whoPlayed = 'red';
+  }
 
 restartButton.onclick = function () {
   restart();
@@ -219,6 +223,7 @@ board.addEventListener('click', function (event) {
 
     const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
 
+
     if (weHaveAWinner) {
       victoryMessage(whoPlayed);
     } else {
@@ -226,7 +231,6 @@ board.addEventListener('click', function (event) {
     }
   }
 });
-
 
 
 
@@ -253,3 +257,4 @@ function checkDraw(){
 if(checkDraw){
   alert('Empate!')
 }
+
