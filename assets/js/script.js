@@ -196,4 +196,11 @@ function victoryMessage(conditionV, conditionH, conditionD, player) {
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
   addCircle(col, whoPlayed);
+
+  const verticalWin = validateVertical();
+  const horizontalWin = validateHorizontal();
+  const diagonalWin = validateDiagonal(board);
+
+  victoryMessage(verticalWin, horizontalWin, diagonalWin, whoPlayed);
+  whoseTurnIsIt(whoPlayed)
 });
