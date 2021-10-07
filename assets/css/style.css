@@ -1,40 +1,98 @@
+@font-face {
+  font-family: 'cafeteriabold';
+  src: url('./fonts/cafeteria_bold-webfont.woff') format('woff2'),
+       url('./fonts/cafeteria_bold-webfont.woff2') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+:root {
+  --antique-blue: #2465ce;
+  --antique-yellow: lightyellow;
+  --yellow: rgb(255, 255, 164);
+}
+
+body {
+  background-color: var(--antique-blue);
+}
+
+h1 {
+  font-family: 'cafeteriabold';
+  font-size: 6rem;
+  text-align: center;
+  color: var(--antique-yellow);
+  margin-top: 30px;
+}
+
 #game {
   display: flex;
   flex-direction: row;
   justify-content: center;
-  margin-top: 100px;
+  margin-top: 30px;
 }
 
 .columns {
-  width: 50px;
-  border: 1px solid black;
-  margin-right: 1px;
+  width: 70px;
+  height: 380px;
+  background-color: var(--antique-yellow);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  border-top: 7px ridge var(--yellow);
+  border-bottom: 7px ridge var(--yellow);
+  padding-top: 10px;
+  padding-bottom: 10px;
+}
+
+#column1 {
+  border-left: 7px ridge var(--yellow);
+  padding-left: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+
+}
+
+#column7 {
+  border-right: 7px ridge var(--yellow);
+  padding-right: 20px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
 }
 
 .cells {
   height: 50px;
   width: 50px;
+  margin: 5px 0px;
+  background-color: var(--antique-blue);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  border: 2px ridge var(--yellow);
+  box-sizing: border-box;
+  box-shadow: inset 0px 1px 8px 0px rgba(0,0,0,0.34);
 }
 
 .disc {
   height: 50px;
   width: 50px;
   border-radius: 50%;
+  box-sizing: border-box;
 }
 
 .red {
-  background-color: red;
+  background-color: rgb(255, 78, 78);
 }
 
 .black {
-  background-color: black;
+  background-color: rgb(31, 31, 31);
 }
 
-.circles {
+/* .circles {
   background-color: red;
   border-radius: 50%;
   border: 1px solid black;
   max-width: auto;
   width: 100%;
   height: 100%;
-}
+} */
