@@ -262,7 +262,7 @@ board.addEventListener('click', function (event) {
     if (weHaveAWinner) {
       victoryMessage(whoPlayed);
     } else if (isDraw) {
-      drawMessage;
+      drawMessage();
     } else {
       whoseTurnIsIt(whoPlayed);
     }
