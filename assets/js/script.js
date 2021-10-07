@@ -97,29 +97,28 @@ function validateHorizontal() {
     for (let i = x; i <= x + 36; i += 6) {
       const cells = document.querySelector(`#cell${i}`);
       let discs = cells.firstChild;
+      if (discs === null) {
+        discArray.push(null)
+      }
       if (discs !== null) {
         discArray.push(discs.getAttribute('class'));
       }
     }
-    let blackCounter = 0;
-    let redCounter = 0;
+
+    let blackSequence = 0;
+    let redSequence = 0;
+
     for (let i = 0; i < discArray.length; i++) {
-      if (discArray[i] === 'disc black') {
-        blackCounter++;
-        if (discArray[i + 1] === 'disc red') {
-          redCounter = 0;
-        }
+      if (discArray[i] === 'disc black' && discArray[i + 1] === 'disc black') {
+        blackSequence++;
       }
-      if (discArray[i] === 'disc red') {
-        redCounter++;
-        if (discArray[i + 1] === 'disc black') {
-          blackCounter = 0;
-        }
+      if (discArray[i] === 'disc red' && discArray[i + 1] === 'disc red') {
+        redSequence++;
       }
     }
-    if (blackCounter === 4) {
+    if (blackSequence === 3) {
       return true;
-    } else if (redCounter === 4) {
+    } else if (redSequence === 3) {
       return true;
     }
   }
