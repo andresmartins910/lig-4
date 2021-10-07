@@ -191,7 +191,7 @@ function validateDiagonal(boardContainer) {
 function validateDraw() {
   const divCells = document.querySelectorAll('.cells');
 
-  for (let i = 0; i < 37; i + 6) {
+  for (let i = 0; i < 37; i += 6) {
     if (divCells[i].innerHTML === '') {
       return false;
     }
