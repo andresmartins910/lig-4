@@ -1,12 +1,14 @@
 generateTable();
 const board = document.getElementById('game');
+const sectionControls = document.querySelector('.controls');
 const restartButton = document.getElementById('restartButton');
 let whoPlayed = 'red';
+showInicialPlayer(whoPlayed, sectionControls);
 
 function generateTable() {
   const main = document.createElement('main');
   main.id = 'game';
-  document.body.appendChild(main);
+  document.body.prepend(main);
 
   // generate columns
   let counterColumns = 1;
@@ -31,6 +33,14 @@ function generateTable() {
   });
 }
 
+function showInicialPlayer(initialPlayer, sectionControls) {
+  const divShowPlayer = document.getElementById('show__player');
+  const div = document.createElement('div');
+  div.classList.add('disc');
+  div.classList.add(initialPlayer);
+  divShowPlayer.prepend(div);
+}
+
 function addCircle(col, currentPlayer) {
   const circle = document.createElement('div');
   circle.classList.add('disc');
@@ -46,12 +56,15 @@ function addCircle(col, currentPlayer) {
   }
 }
 
-function whoseTurnIsIt(currentPlayer) {
-  if (currentPlayer === 'red') {
+function whoseTurnIsIt(previousPlayer) {
+  const showPlayer = document.querySelector('#show__player > div');
+  if (previousPlayer === 'red') {
     whoPlayed = 'black';
-  } else if (currentPlayer === 'black') {
+  } else if (previousPlayer === 'black') {
     whoPlayed = 'red';
   }
+  showPlayer.classList.remove(previousPlayer);
+  showPlayer.classList.add(whoPlayed);
 }
 
 function validateVertical() {
@@ -99,27 +112,33 @@ function validateHorizontal() {
       const cells = document.querySelector(`#cell${i}`);
       let discs = cells.firstChild;
       if (discs === null) {
-        discArray.push(null)
+        discArray.push(null);
       }
       if (discs !== null) {
         discArray.push(discs.getAttribute('class'));
       }
     }
 
-    let blackSequence = 0;
-    let redSequence = 0;
+    let blackCounter = 1;
+    let redCounter = 1;
 
     for (let i = 0; i < discArray.length; i++) {
-      if (discArray[i] === 'disc black' && discArray[i + 1] === 'disc black') {
-        blackSequence++;
+      if (discArray[i] === 'disc black') {
+        blackCounter++;
+        if (discArray[i - 1] === 'disc red' || discArray[i - 1] === null || discArray[i - 1] === undefined) {
+          blackCounter = 1;
+        }
       }
-      if (discArray[i] === 'disc red' && discArray[i + 1] === 'disc red') {
-        redSequence++;
+      if (discArray[i] === 'disc red') {
+        redCounter++;
+        if (discArray[i - 1] === 'disc black' || discArray[i - 1] === null || discArray[i - 1] === undefined) {
+          redCounter = 1;
+        }
       }
     }
-    if (blackSequence === 3) {
+    if (blackCounter >= 4) {
       return true;
-    } else if (redSequence === 3) {
+    } else if (redCounter >= 4) {
       return true;
     }
   }
@@ -169,16 +188,32 @@ function validateDiagonal(boardContainer) {
   return false;
 }
 
-function deleteTable() {
-  const deleteMainTable = document.getElementById('game');
-  deleteMainTable.remove();
+function validateDraw() {
+  const divCells = document.querySelectorAll('.cells');
+
+  for (let i = 0; i < 37; i + 6) {
+    if (divCells[i].innerHTML === '') {
+      return false;
+    }
+  }
+  return true;
 }
 
-/* Necessita ser revista */
+function deleteTable() {
+  const dellRedCells = document.getElementsByClassName('disc red');
+  while (dellRedCells.length > 0) {
+    dellRedCells[0].remove();
+  }
+  const dellBlackCells = document.getElementsByClassName('disc black');
+  while (dellBlackCells.length > 0) {
+    dellBlackCells[0].remove();
+  }
+}
+
 function restart() {
-  whoPlayed = '';
   deleteTable();
-  generateTable();
+  whoPlayed = 'red';
+  showInicialPlayer(whoPlayed, sectionControls);
 }
 
 restartButton.onclick = function () {
@@ -191,7 +226,12 @@ function victoryMessage(player) {
   }, 100);
 }
 
-/* FUNÇÃO QUE VERIFICA SE A COLUNA ESTÁ CHEIA */
+function drawMessage() {
+  setTimeout(() => {
+    alert('DRAW!!!');
+  }, 100);
+}
+
 const columnIsFull = columnElementHTML => {
   const columnArray = columnElementHTML.children;
   let countNoEmptyCell = 0;
@@ -208,7 +248,6 @@ const columnIsFull = columnElementHTML => {
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
 
-  /* VERIFICA SE COLUNA ESTÁ CHEIA */
   columnIsFull(col);
 
   if (col.classList.contains('clickable')) {
@@ -216,11 +255,14 @@ board.addEventListener('click', function (event) {
     const verticalWin = validateVertical();
     const horizontalWin = validateHorizontal();
     const diagonalWin = validateDiagonal(board);
+    const isDraw = validateDraw();
 
     const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
 
     if (weHaveAWinner) {
       victoryMessage(whoPlayed);
+    } else if (isDraw) {
+      drawMessage;
     } else {
       whoseTurnIsIt(whoPlayed);
     }

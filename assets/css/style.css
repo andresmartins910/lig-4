@@ -130,5 +130,35 @@ section {
   max-width: auto;
   width: 100%;
   height: 100%;
+
 } */
+
+
+
+section.controls {
+  text-align: center;
+  width: 700px;
+  /* height: 100px; */
+  display: flex;
+  /* flex-direction: column; */
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+}
+
+.player__container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.player__container > span {
+  margin-right: 10px;
+}
+
+#restartButton {
+  margin-right: 100px;
+
+}
+
+
 
