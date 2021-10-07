@@ -30,12 +30,6 @@ function generateTable() {
 
 generateTable()
 
-const divContainerGroup = document.querySelector('#game');
-divContainerGroup.addEventListener('click', event => {
-    const column = event.target.parentElement.children;
-    addCircle(column, whoPlayed);
-    whoseTurnIsIt(whoPlayed);
-});
 
 
 function whoseTurnIsIt(currentPlayer) {
@@ -62,7 +56,6 @@ const addCircle = (columnArray, currentPlayer) => {
         }
     }
 };
-
 
 function validateVertical() {
     for (let j = 1; j <= 6; j++) {
@@ -261,7 +254,49 @@ restartButton.onclick = function () {
 
 
 
+/* RAFAEL */
+const diagonalValidation = divContainer => {
+  // validation from left to right
+  for (let j = 5; j >= 3; j--) {
+    for (let i = 0; i <= 3; i++) {
+      let row = j;
+      const coloredCircleGroup = [];
+      for (let column = i; column <= i + 3; column++) {
+        const coloredCircle = divContainer.children[column].children[row].firstChild;
+        if (coloredCircle !== null) {
+          coloredCircleGroup.push(coloredCircle.classList[1]);
+        }
+        row -= 1;
+      }
+      const filterRed = coloredCircleGroup.filter(element => element === 'red');
+      const filterBlack = coloredCircleGroup.filter(element => element === 'black');
+      if (filterRed.length === 4 || filterBlack.length === 4) {
+        return true;
+      }
+    }
+  }
 
+  // Validation from right to left
+  for (let j = 5; j >= 3; j--) {
+    for (let i = 6; i >= 3; i--) {
+      let row = j;
+      const coloredCircleGroup = [];
+      for (let column = i; column >= i - 3; column--) {
+        const coloredCircle = divContainer.children[column].children[row].firstChild;
+        if (coloredCircle !== null) {
+          coloredCircleGroup.push(coloredCircle.classList[1]);
+        }
+        row -= 1;
+      }
+      const filterRed = coloredCircleGroup.filter(element => element === 'red');
+      const filterBlack = coloredCircleGroup.filter(element => element === 'black');
+      if (filterRed.length === 4 || filterBlack.length === 4) {
+        return true;
+      }
+    }
+  }
+  return false;
+};
 
 
 
