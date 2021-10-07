@@ -188,6 +188,17 @@ function validateDiagonal(boardContainer) {
   return false;
 }
 
+function validateDraw() {
+  const divCells = document.querySelectorAll('.cells');
+
+  for (let i = 0; i < 37; i + 6) {
+    if (divCells[i].innerHTML === '') {
+      return false;
+    }
+  }
+  return true;
+}
+
 function deleteTable() {
   const dellRedCells = document.getElementsByClassName('disc red');
   while (dellRedCells.length > 0) {
@@ -215,6 +226,12 @@ function victoryMessage(player) {
   }, 100);
 }
 
+function drawMessage() {
+  setTimeout(() => {
+    alert('DRAW!!!');
+  }, 100);
+}
+
 const columnIsFull = columnElementHTML => {
   const columnArray = columnElementHTML.children;
   let countNoEmptyCell = 0;
@@ -238,11 +255,14 @@ board.addEventListener('click', function (event) {
     const verticalWin = validateVertical();
     const horizontalWin = validateHorizontal();
     const diagonalWin = validateDiagonal(board);
+    const isDraw = validateDraw();
 
     const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
 
     if (weHaveAWinner) {
       victoryMessage(whoPlayed);
+    } else if (isDraw) {
+      drawMessage;
     } else {
       whoseTurnIsIt(whoPlayed);
     }
