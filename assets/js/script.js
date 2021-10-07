@@ -63,23 +63,23 @@ whoPlayed = 'red' ;
 const restartButton = document.getElementById("restartButton");
 
 function deleteTable() {
-    const deleteMainTable = document.getElementById('game');
-    deleteMainTable.remove();
-}
-
-function restart() {
-    whoPlayed = '';
+    const dellRedCells = document.getElementsByClassName("disc red");  
+    while (dellRedCells.length > 0) {
+      dellRedCells[0].remove();
+    }
+    const dellBlackCells = document.getElementsByClassName("disc black");  
+    while (dellBlackCells.length > 0) {
+      dellBlackCells[0].remove();
+    }
+  }
+  
+  function restart() {
     deleteTable();
-    generateTable();
-}
+  }
 
 restartButton.onclick = function () {
     restart();
 };
-
-
-
-
 
 
 
