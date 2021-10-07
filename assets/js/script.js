@@ -47,7 +47,7 @@ function validateVertical() {
         let redCounter = 0
     
         for (let i = 0; i < discArray.length; i++) {
-            if (columns[i] === 'disc black') {
+            if (discArray[i] === 'disc black') {
                 blackCounter++
                 if (discArray[i + 1] === 'disc red') {
                     redCounter = 0
