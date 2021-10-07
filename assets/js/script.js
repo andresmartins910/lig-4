@@ -185,12 +185,10 @@ restartButton.onclick = function () {
   restart();
 };
 
-function victoryMessage(conditionV, conditionH, conditionD, player) {
-  if (conditionV || conditionH || conditionD) {
-    setTimeout(() => {
-      alert(`${player} venceu!`);
-    }, 100);
-  }
+function victoryMessage(player) {
+  setTimeout(() => {
+    alert(`${player} venceu!`);
+  }, 100);
 }
 
 board.addEventListener('click', function (event) {
@@ -201,6 +199,11 @@ board.addEventListener('click', function (event) {
   const horizontalWin = validateHorizontal();
   const diagonalWin = validateDiagonal(board);
 
-  victoryMessage(verticalWin, horizontalWin, diagonalWin, whoPlayed);
-  whoseTurnIsIt(whoPlayed)
+  const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
+
+  if (weHaveAWinner) {
+    victoryMessage(whoPlayed);
+  } else {
+    whoseTurnIsIt(whoPlayed);
+  }
 });
