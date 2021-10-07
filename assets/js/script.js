@@ -187,13 +187,13 @@ restartButton.onclick = function () {
 
 function victoryMessage(conditionV, conditionH, conditionD, player) {
   if (conditionV || conditionH || conditionD) {
-    alert(`${player} venceu!`);
+    setTimeout(() => {
+      alert(`${player} venceu!`);
+    }, 100);
   }
 }
 
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
   addCircle(col, whoPlayed);
-
-
 });
