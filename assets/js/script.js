@@ -226,3 +226,30 @@ board.addEventListener('click', function (event) {
     }
   }
 });
+
+
+
+
+// Checa se é empate
+
+function checkDraw(){
+
+  const divCells = document.querySelectorAll('.cells')
+  
+
+  for(let i = 0; i < 37; i+6){
+
+    if(divCells[i].innerHTML === ''){
+      return false
+    }
+    
+  }
+      return true
+
+}
+
+// Checa se empate é true e, caso seja, retorna mensagem de empate ao vencedor 
+
+if(checkDraw){
+  alert('Empate!')
+}
