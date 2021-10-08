@@ -1,20 +1,18 @@
-const main = document.querySelector('#game')
+const main = document.querySelector('#game');
 generateTable();
 const board = document.getElementById('board');
 const sectionControls = document.querySelector('.controls');
 const restartButton = document.getElementById('restartButton');
 let whoPlayed = 'red';
 showInicialPlayer(whoPlayed, sectionControls);
-const popup = document.getElementById("popup-container");
-const popupMessage = document.getElementById("popup-message");
+const popup = document.getElementById('popup-container');
+const popupMessage = document.getElementById('popup-message');
 const restartButton02 = document.getElementById('restartButton02');
-
-
 
 function generateTable() {
   const sectionBoard = document.createElement('section');
   sectionBoard.id = 'board';
-  sectionBoard.classList.add('board__container')
+  sectionBoard.classList.add('board__container');
   main.prepend(sectionBoard);
 
   // generate columns
@@ -75,7 +73,7 @@ function whoseTurnIsIt(previousPlayer) {
 }
 
 function validateVertical() {
-  for (let j = 1; j <= 6; j++) {
+  for (let j = 1; j <= 7; j++) {
     const cells = document.querySelector(`#column${j}`).children;
 
     let discArray = [];
@@ -102,11 +100,12 @@ function validateVertical() {
           blackCounter = 0;
         }
       }
-    }
-    if (blackCounter === 4) {
-      return true;
-    } else if (redCounter === 4) {
-      return true;
+
+      if (blackCounter === 4) {
+        return true;
+      } else if (redCounter === 4) {
+        return true;
+      }
     }
   }
   return false;
@@ -222,7 +221,6 @@ function restart() {
   whoPlayed = 'red';
   showInicialPlayer(whoPlayed, sectionControls);
   clickableClassRemoveAndAdd('noClickable');
-  
 }
 
 restartButton.onclick = function () {
@@ -230,24 +228,23 @@ restartButton.onclick = function () {
 };
 
 restartButton02.onclick = function () {
-  popup.style.display = "none";
+  popup.style.display = 'none';
 };
 
 function victoryMessage(player) {
   // setTimeout(() => {
   //   alert(`${player} venceu!`);
-  // }, 100);  
-  popupMessage.innerText = `${player} venceu!`;  
-  popup.style.display = "flex";  
+  // }, 100);
+  popupMessage.innerText = `${player} venceu!`;
+  popup.style.display = 'flex';
 }
 
 function drawMessage() {
   // setTimeout(() => {
   //   alert('DRAW!!!');
   // }, 100);
-  popupMessage.innerText = 'DRAW!!!'  
-  popup.style.display = "flex";
-
+  popupMessage.innerText = 'DRAW!!!';
+  popup.style.display = 'flex';
 }
 
 const columnIsFull = columnElementHTML => {
