@@ -4,6 +4,11 @@ const sectionControls = document.querySelector('.controls');
 const restartButton = document.getElementById('restartButton');
 let whoPlayed = 'red';
 showInicialPlayer(whoPlayed, sectionControls);
+const popup = document.getElementById("popup-container");
+const popupMessage = document.getElementById("popup-message");
+const restartButton02 = document.getElementById('restartButton02');
+
+
 
 function generateTable() {
   const main = document.createElement('main');
@@ -215,22 +220,32 @@ function restart() {
   whoPlayed = 'red';
   showInicialPlayer(whoPlayed, sectionControls);
   clickableClassRemoveAndAdd('noClickable');
+  
 }
 
 restartButton.onclick = function () {
   restart();
 };
 
+restartButton02.onclick = function () {
+  popup.style.display = "none";
+};
+
 function victoryMessage(player) {
-  setTimeout(() => {
-    alert(`${player} venceu!`);
-  }, 100);
+  // setTimeout(() => {
+  //   alert(`${player} venceu!`);
+  // }, 100);  
+  popupMessage.innerText = `${player} venceu!`;  
+  popup.style.display = "flex";  
 }
 
 function drawMessage() {
-  setTimeout(() => {
-    alert('DRAW!!!');
-  }, 100);
+  // setTimeout(() => {
+  //   alert('DRAW!!!');
+  // }, 100);
+  popupMessage.innerText = 'DRAW!!!'  
+  popup.style.display = "flex";
+
 }
 
 const columnIsFull = columnElementHTML => {

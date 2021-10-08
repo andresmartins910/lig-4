@@ -116,13 +116,12 @@ section {
   border: 3px ridge var(--yellow);
   padding: 1px 20px;
   margin-top: 50px;
-  /* margin-bottom: 50px; */
   margin-right: 30px;
   border-radius: 5px;
   cursor: pointer;
 }
 
-#restartButton:hover{
+#restartButton:hover, #restartButton02:hover{
   color: #5391f5;
 }
 
@@ -139,6 +138,54 @@ section {
   margin-bottom: 10px;
 }
 
+#popup-container {
+  width: 100vw;
+  height: 100vh;
+  position: fixed;,
+  background-color: black;
+  background: rgba(0,0,0,.5);
+  top: 0px;
+  left: 0px;
+  display: none;
+  justify-content: center;
+  align-items: center;
+}
 
+#popup-result {
+  background-color: var(--antique-yellow);
+  width: 20%;
+  height: 10%;
+  border: 7px ridge var(--yellow);
+  padding: 5px;
+  border-top-right-radius: 20px;
+  border-bottom-right-radius: 20px;
+  border-top-left-radius: 20px;
+  border-bottom-left-radius: 20px;
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: center;
+  align-items: center;
+}
 
+p {
+  font-family: 'cafeteriabold';
+  font-size: 2rem;  
+  color: var(--antique-blue)
+  margin-top: 30px;
+  order: 1;
+}
 
+#restartButton02 {
+  background-color: var(--antique-blue);
+  font-family: 'cafeteriabold';
+  font-size: 1.5rem;
+  color: var(--antique-yellow);
+  border: 3px ridge var(--yellow);
+  margin: auto;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+#restartButton02:hover{
+  color: black;
+}
