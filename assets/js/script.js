@@ -214,6 +214,7 @@ function restart() {
   deleteTable();
   whoPlayed = 'red';
   showInicialPlayer(whoPlayed, sectionControls);
+  clickableClassRemoveAndAdd('noClickable');
 }
 
 restartButton.onclick = function () {
@@ -234,24 +235,34 @@ function drawMessage() {
 
 const columnIsFull = columnElementHTML => {
   const columnArray = columnElementHTML.children;
-  let countNoEmptyCell = 0;
+  const columnArrayNoEmpty = [];
+
   for (let i = 0; i < columnArray.length; i++) {
-    if (columnArray[i].innerHTML !== '') {
-      countNoEmptyCell += 1;
+    if (columnArray[i].firstChild !== null) {
+      columnArrayNoEmpty.push(columnArray[i]);
     }
   }
-  if (countNoEmptyCell === columnArray.length) {
+
+  if (columnArrayNoEmpty.length === columnArray.length) {
     columnElementHTML.classList.remove('clickable');
+    columnElementHTML.classList.add('noClickable');
+  }
+};
+
+const clickableClassRemoveAndAdd = isClickable => {
+  const selectedByClassElement = document.querySelectorAll(`.${isClickable}`);
+  for (let i = 0; i < selectedByClassElement.length; i++) {
+    selectedByClassElement[i].classList.toggle('clickable');
+    selectedByClassElement[i].classList.toggle('noClickable');
   }
 };
 
 board.addEventListener('click', function (event) {
   const col = event.target.parentElement;
 
-  columnIsFull(col);
-
   if (col.classList.contains('clickable')) {
     addCircle(col, whoPlayed);
+    columnIsFull(col);
     const verticalWin = validateVertical();
     const horizontalWin = validateHorizontal();
     const diagonalWin = validateDiagonal(board);
@@ -260,8 +271,10 @@ board.addEventListener('click', function (event) {
     const weHaveAWinner = verticalWin || horizontalWin || diagonalWin;
 
     if (weHaveAWinner) {
+      clickableClassRemoveAndAdd('clickable');
       victoryMessage(whoPlayed);
     } else if (isDraw) {
+      clickableClassRemoveAndAdd('clickable');
       drawMessage();
     } else {
       whoseTurnIsIt(whoPlayed);
