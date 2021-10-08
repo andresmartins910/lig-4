@@ -1,5 +1,6 @@
+const main = document.querySelector('#game')
 generateTable();
-const board = document.getElementById('game');
+const board = document.getElementById('board');
 const sectionControls = document.querySelector('.controls');
 const restartButton = document.getElementById('restartButton');
 let whoPlayed = 'red';
@@ -11,9 +12,10 @@ const restartButton02 = document.getElementById('restartButton02');
 
 
 function generateTable() {
-  const main = document.createElement('main');
-  main.id = 'game';
-  document.body.prepend(main);
+  const sectionBoard = document.createElement('section');
+  sectionBoard.id = 'board';
+  sectionBoard.classList.add('board__container')
+  main.prepend(sectionBoard);
 
   // generate columns
   let counterColumns = 1;
@@ -22,7 +24,7 @@ function generateTable() {
     divColumn.className = 'columns';
     divColumn.classList.add('clickable');
     divColumn.id = `column${counterColumns++}`;
-    main.appendChild(divColumn);
+    sectionBoard.appendChild(divColumn);
   }
 
   // generate cells
