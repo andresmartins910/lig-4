@@ -141,7 +141,7 @@ section {
 #popup-container {
   width: 100vw;
   height: 100vh;
-  position: fixed;,
+  position: fixed;
   background-color: black;
   background: rgba(0,0,0,.5);
   top: 0px;
@@ -170,8 +170,7 @@ section {
 p {
   font-family: 'cafeteriabold';
   font-size: 2rem;  
-  color: var(--antique-blue)
-  margin-top: 30px;
+  color: var(--antique-blue);  
   order: 1;
 }
 
