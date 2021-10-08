@@ -75,7 +75,7 @@ function whoseTurnIsIt(previousPlayer) {
 }
 
 function validateVertical() {
-  for (let j = 1; j <= 6; j++) {
+  for (let j = 1; j <= 7; j++) {
     const cells = document.querySelector(`#column${j}`).children;
 
     let discArray = [];
